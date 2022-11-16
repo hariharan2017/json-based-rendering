@@ -1,0 +1,49 @@
+{
+  "title": "Customer Survey",
+  "allQuestions": {
+    "sections": ["customer information", "address", "product 1", "product 2"],
+    "customer information": [
+      {
+        "id": "1000",
+        "label": "First Name",
+        "element": "input",
+        "type": "text",
+        "validation": {
+          "required": "true"
+        },
+        "colSize": "50%"
+      },
+      {
+        "id": "1001",
+        "label": "Last Name",
+        "element": "input",
+        "type": "text",
+        "validation": {
+          "required": "false"
+        },
+        "colSize": "50%"
+      },
+      {
+        "id": "1002",
+        "label": "E-Mail",
+        "element": "input",
+        "type": "email",
+        "colSize": "100%"
+      },
+      {
+        "id": "1003",
+        "label": "Age",
+        "element": "input",
+        "type": "number",
+        "colSize": "25%"
+      },
+      {
+        "id": "1004",
+        "label": "Contact Number",
+        "element": "input",
+        "type": "text",
+        "colSize": "75%"
+      }
+    ]
+  }
+}
