@@ -1,5 +1,6 @@
-import { useDispatch } from "react-redux";
-import { actions } from "../../store/test";
+import { useDispatch, useSelector } from "react-redux";
+import { actions } from "../../store/question";
+import { myDebounce } from "../../helpers";
 import questions from "../../data/questions.json";
 import TextField from "../../components/TextField";
 import "./Questionnaire.scss";
@@ -8,8 +9,16 @@ function Questionnaire() {
   const questionTemp = questions.allQuestions;
   const sections = questions.allQuestions.sections;
 
+  const questionsData = useSelector(state => state.questionData);
+
   const questionList = [];
   const dispatch = useDispatch();
+
+  console.log(questionsData.data);
+
+  const handleOnChange = myDebounce((type, event) => {
+    dispatch(actions.changeData({id: event.target.id, value: event.target.value}));
+  });
 
   sections.forEach((section) => {
     questionTemp?.[section] &&
@@ -22,6 +31,7 @@ function Questionnaire() {
               type={question.type}
               label={question.label}
               width={question.colSize}
+              onChange={(event) => handleOnChange("input", event)}
             />
           );
         }
