@@ -14,8 +14,6 @@ function Questionnaire() {
   const questionList = [];
   const dispatch = useDispatch();
 
-  console.log(questionsData.data);
-
   const handleOnChange = myDebounce((type, event) => {
     dispatch(actions.changeData({id: event.target.id, value: event.target.value}));
   });
@@ -30,6 +28,7 @@ function Questionnaire() {
               id={question.id}
               type={question.type}
               label={question.label}
+              required={Boolean(question.validation?.required)}
               width={question.colSize}
               onChange={(event) => handleOnChange("input", event)}
             />
