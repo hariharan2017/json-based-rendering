@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper";
 
-import JsonImage from "../../../images/Json.png";
-import AvatarImage from "../../../images/Avatar.png";
+import JsonImage from "../../../assets/Json.png";
+import AvatarImage from "../../../assets/Avatar.png";
 import profileData from "../../../data/profile.json";
 import "./Topbar.scss";
 
