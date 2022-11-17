@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+import { actions } from "../../store/test";
 import questions from "../../data/questions.json";
 import TextField from "../../components/TextField";
 import "./Questionnaire.scss";
@@ -7,6 +9,7 @@ function Questionnaire() {
   const sections = questions.allQuestions.sections;
 
   const questionList = [];
+  const dispatch = useDispatch();
 
   sections.forEach((section) => {
     questionTemp?.[section] &&
@@ -28,6 +31,7 @@ function Questionnaire() {
   return (
     <div className="main-container">
       <div className="main-heading">{questions.title}</div>
+      {/* <button onClick={() => dispatch(actions.fetchData())}>Test Saga</button> */}
       <div className="questions-container">
         {questionList.map((question) => {
           return question;
