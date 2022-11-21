@@ -5,7 +5,6 @@ const testReducer = (state, action) => {
 
   switch (action.type) {
     case actionTypes.FETCH_API_DATA:
-      console.log(action, state);
       return {
         ...state,
       };

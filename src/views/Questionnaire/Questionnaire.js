@@ -16,8 +16,6 @@ function Questionnaire() {
   const questionTracker = {};
   const dispatch = useDispatch();
 
-  console.log(questionsData.data);
-
   const handleOnChange = myDebounce((type, event) => {
     dispatch(actions.changeData({ id: event.target.id, value: event.target.value }));
   });

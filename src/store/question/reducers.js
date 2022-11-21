@@ -14,7 +14,6 @@ const questionDataReducer = (state, action) => {
       }
     });
   });
-  console.log(questionTracker);
 
   switch (action.type) {
     case actionTypes.CHANGE_QUESTION_DATA:
