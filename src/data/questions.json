@@ -1,48 +1,118 @@
 {
   "title": "Customer Survey",
   "allQuestions": {
-    "sections": ["customer information", "address", "product 1", "product 2"],
+    "sections": [
+      "customer information",
+      "address",
+      "product 1",
+      "product 2"
+    ],
     "customer information": [
       {
-        "id": "1000",
+        "id": 1000,
         "label": "First Name",
         "element": "input",
         "type": "text",
+        "visible": true,
         "validation": {
-          "required": "true"
+          "required": true
         },
         "colSize": "50%"
       },
       {
-        "id": "1001",
+        "id": 1001,
         "label": "Last Name",
         "element": "input",
         "type": "text",
-        "validation": {
-          "required": "false"
-        },
+        "visible": true,
+        "validation": {},
         "colSize": "50%"
       },
       {
-        "id": "1002",
+        "id": 1002,
         "label": "E-Mail",
         "element": "input",
         "type": "email",
+        "visible": true,
         "colSize": "100%"
       },
       {
-        "id": "1003",
+        "id": 1003,
         "label": "Age",
         "element": "input",
         "type": "number",
+        "visible": true,
         "colSize": "25%"
       },
       {
-        "id": "1004",
+        "id": 1004,
         "label": "Contact Number",
         "element": "input",
         "type": "text",
+        "visible": true,
         "colSize": "75%"
+      }
+    ],
+    "product 1": [
+      {
+        "id": 3000,
+        "label": "How long have you been using this product and why?",
+        "element": "textArea",
+        "colSize": "100%",
+        "visible": false,
+        "depends": {
+          "id": 1000
+        }
+      },
+      {
+        "id": 3001,
+        "label": "Write your comments and suggestions about our products in comparison with other competitors",
+        "element": "textArea",
+        "colSize": "100%",
+        "visible": false,
+        "depends": {
+          "id": 1000
+        }
+      },
+      {
+        "id": 3002,
+        "label": "Are you satisfied with our product performance? Share your opinions:",
+        "element": "textArea",
+        "colSize": "100%",
+        "visible": false,
+        "depends": {
+          "id": 1000
+        }
+      },
+      {
+        "id": 3003,
+        "label": "Tell us something about your shopping experiences to buy our product:",
+        "element": "textArea",
+        "colSize": "100%",
+        "visible": false,
+        "depends": {
+          "id": 1000
+        }
+      },
+      {
+        "id": 3004,
+        "label": "Would you like to continue with our product? If no why:",
+        "element": "textArea",
+        "colSize": "100%",
+        "visible": false,
+        "depends": {
+          "id": 1000
+        }
+      },
+      {
+        "id": 3005,
+        "label": "What kind of changes would you like to see in our products so as to enhance your satisfaction level?",
+        "element": "textArea",
+        "colSize": "100%",
+        "visible": false,
+        "depends": {
+          "id": 1000
+        }
       }
     ]
   }

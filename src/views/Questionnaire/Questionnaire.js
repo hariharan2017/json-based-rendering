@@ -3,6 +3,7 @@ import { actions } from "../../store/question";
 import { myDebounce } from "../../helpers";
 import questions from "../../data/questions.json";
 import TextField from "../../components/TextField";
+import TextArea from "../../components/TextArea";
 import "./Questionnaire.scss";
 
 function Questionnaire() {
@@ -12,27 +13,45 @@ function Questionnaire() {
   const questionsData = useSelector(state => state.questionData);
 
   const questionList = [];
+  const questionTracker = {};
   const dispatch = useDispatch();
 
+  console.log(questionsData.data);
+
   const handleOnChange = myDebounce((type, event) => {
-    dispatch(actions.changeData({id: event.target.id, value: event.target.value}));
+    dispatch(actions.changeData({ id: event.target.id, value: event.target.value }));
   });
 
   sections.forEach((section) => {
     questionTemp?.[section] &&
       questionTemp?.[section].forEach((question) => {
-        if (question.element === "input") {
-          questionList.push(
-            <TextField
-              key={question.id}
-              id={question.id}
-              type={question.type}
-              label={question.label}
-              required={Boolean(question.validation?.required)}
-              width={question.colSize}
-              onChange={(event) => handleOnChange("input", event)}
-            />
-          );
+        questionTracker[question.id] = Boolean(question.visible);
+        if(question?.visible !== "false") {
+          if (question.element === "input") {
+            questionList.push(
+              <TextField
+                key={question.id}
+                id={question.id}
+                type={question.type}
+                label={question.label}
+                required={question.validation?.required}
+                width={question.colSize}
+                value={questionsData?.[question.id] || ""}
+                onChange={(event) => handleOnChange("input", event)}
+              />
+            );
+          } else if(question.element === "textArea") {
+            questionList.push(
+              <TextArea
+                key={question.id}
+                id={question.id}
+                label={question.label}
+                required={question.validation?.required}
+                value={questionsData?.[question.id] || ""}
+                onChange={(event) => handleOnChange("input", event)}
+              />
+            );
+          }
         }
       });
   });

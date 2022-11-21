@@ -3,9 +3,12 @@
   flex-direction: column;
   margin-bottom: 2rem;
 
+  .input-label-container {
+    margin: 10px 0;
+  }
+
   .input-label {
     font-size: 12px;
-    margin: 10px 0;
   }
 
   .input-text-field {
