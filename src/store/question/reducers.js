@@ -2,35 +2,56 @@ import * as actionTypes from "./types";
 import questions from "../../data/questions.json";
 
 const questionDataReducer = (state, action) => {
-  state = state || { data: {}, questionTracker: {} };
+  state = state || { data: {}, sections: [], questionsList: {}, questionVisibility: {}, errors: {} };
 
-  const questionTracker = {};
+  const questionsList = {};
+  const questionVisibility = {};
+
+  let total = 0;
+
   const { sections } = questions.allQuestions;
+
   sections.forEach((section) => {
-    questions.allQuestions?.[section] && questions.allQuestions?.[section].forEach((question) => {
-      questionTracker[question.id] = {
-        visible: question.visible,
-        depends: question.depends || null,
+    questionsList[section] = {};
+
+    questions.allQuestions?.[section] && questions.allQuestions?.[section].forEach((question, index) => {
+      questionsList[section][question.id] = {
+        ...question,
+        index,
+        total: total++
+      };
+
+      questionVisibility[question.id] = {
+        shouldShow: question.visible,
       }
     });
   });
 
+  state.sections = [...sections];
+  state.questionsList = JSON.parse(JSON.stringify(questionVisibility));
+  state.questionVisibility = JSON.parse(JSON.stringify(questionVisibility));
+
   switch (action.type) {
     case actionTypes.CHANGE_QUESTION_DATA:
+      const { id, value, section } = action.data;
+
+      if(value && questionsList[section][id]?.changes?.condition === true) {
+        questionsList[section][id].changes.ids.forEach((id) => {
+          state.questionVisibility[id].shouldShow = true;
+        })
+      } else if (!value && questionsList[section][id]?.changes?.condition === true) {
+        questionsList[section][id].changes.ids.forEach((id) => {
+          state.questionVisibility[id].shouldShow = false;
+        })
+      }
+
       return {
         ...state,
         data: {
           ...JSON.parse(JSON.stringify(state.data)),
-          [action.data.id]: action.data.value,
+          [id]: value,
         },
-      };
-    case actionTypes.TRACK_QUESTION:
-      return {
-        ...state,
-        questionTracker: {
-          ...JSON.parse(JSON.stringify(state.questionTracker)),
-          [action.data.id]: action.data.visibility,
-        },
+        questionVisibility: JSON.parse(JSON.stringify(state.questionVisibility))
       };
     default:
       return state;
