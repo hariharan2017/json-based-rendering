@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../../store/question";
 import { myDebounce } from "../../helpers";
 import questions from "../../data/questions.json";
-import TextField from "../../components/TextField";
-import TextArea from "../../components/TextArea";
-import Radio from "../../components/Radio";
-import Select from "../../components/Select";
+import Question from "./Question";
 import "./Questionnaire.scss";
 
 const Questionnaire = () => {
@@ -26,52 +23,22 @@ const Questionnaire = () => {
       questionTemp?.[section] &&
         questionTemp?.[section].forEach((question) => {
           if (questionsData.questionVisibility[question.id].shouldShow !== false) {
-            if (question.element === "input") {
-              questionListInitial.push(
-                <TextField
-                  key={question.id}
-                  id={question.id}
-                  type={question.type}
-                  label={question.label}
-                  required={question.validation?.required}
-                  width={question.colSize}
-                  value={questionsData?.[question.id] || ""}
-                  placeholder={question.placeholder}
-                  onChange={(event) => handleOnChange("input", event, section)}
-                />
-              );
-            } else if (question.element === "textArea") {
-              questionListInitial.push(
-                <TextArea
-                  key={question.id}
-                  id={question.id}
-                  label={question.label}
-                  required={question.validation?.required}
-                  value={questionsData?.[question.id] || ""}
-                  placeholder={question.placeholder}
-                  onChange={(event) => handleOnChange("input", event, section)}
-                />
-              );
-            } else if (question.element === "radio") {
-              questionListInitial.push(
-                <Radio
-                  id={question.id}
-                  title={question.title}
-                  options={question.options}
-                  value={questionsData?.data?.[question.id]}
-                  onChange={(event) => handleOnChange("radio", event, section, question.id)}
-                />
-              )
-            } else if (question.element === "select") {
-              questionListInitial.push(
-                <Select
-                  id={question.id}
-                  title={question.title}
-                  options={question.options}
-                  onChange={(event) => handleOnChange("select", event, section, question.id)}
-                />
-              )
-            }
+            questionListInitial.push(
+              <Question
+                element={question.element}
+                key={question.id}
+                id={question.id}
+                type={question.type}
+                label={question.label}
+                width={question.colSize}
+                value={questionsData?.[question.id] || ""}
+                placeholder={question.placeholder}
+                title={question.title}
+                options={question.options}
+                onChange={(event) => handleOnChange(question.element, event, section, question.id)}
+                questionsData={questionsData}
+              />
+            );
           }
         });
     });
@@ -81,6 +48,8 @@ const Questionnaire = () => {
 
   const handleOnChange = myDebounce((type, event, section, questionId) => {
     if(type === "input") {
+      dispatch(actions.changeData({ id: event.target.id, value: event.target.value, section }));
+    } else if(type === "textArea") {
       dispatch(actions.changeData({ id: event.target.id, value: event.target.value, section }));
     } else if (type === "radio") {
       dispatch(actions.changeData({ id: questionId, value: Number(event.target.id), section }));
