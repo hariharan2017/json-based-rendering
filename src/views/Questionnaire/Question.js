@@ -15,9 +15,14 @@ const Question = ({
   placeholder,
   title,
   options,
-  onChange,
-  questionsData
+  section,
+  questionsData,
+  handleOnChange,
 }) => {
+  const handleChange = (event) => {
+    handleOnChange(element, event, section, id)
+  }
+
   if (element === "input") {
     return (
       <TextField
@@ -28,7 +33,7 @@ const Question = ({
         width={width}
         value={questionsData?.[id] || ""}
         placeholder={placeholder}
-        onChange={onChange}
+        onChange={handleChange}
       />
     );
   } else if (element === "textArea") {
@@ -39,7 +44,7 @@ const Question = ({
         label={label}
         value={questionsData?.[id] || ""}
         placeholder={placeholder}
-        onChange={onChange}
+        onChange={handleChange}
       />
     );
   } else if (element === "radio") {
@@ -49,7 +54,7 @@ const Question = ({
         title={title}
         options={options}
         value={questionsData?.data?.[id]}
-        onChange={onChange}
+        onChange={handleChange}
       />
     );
   } else if (element === "select") {
@@ -58,7 +63,7 @@ const Question = ({
         id={id}
         title={title}
         options={options}
-        onChange={onChange}
+        onChange={handleChange}
       />
     );
   }

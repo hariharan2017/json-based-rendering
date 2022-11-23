@@ -35,8 +35,9 @@ const Questionnaire = () => {
                 placeholder={question.placeholder}
                 title={question.title}
                 options={question.options}
-                onChange={(event) => handleOnChange(question.element, event, section, question.id)}
+                section={section}
                 questionsData={questionsData}
+                handleOnChange={handleOnChange}
               />
             );
           }
