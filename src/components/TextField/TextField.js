@@ -6,7 +6,7 @@ export default function TextField({ id, type, label, required, width, onChange, 
     <div className="input-container" key={id} style={{ width }}>
       {label && (
         <div className="input-label-container">
-          <label className="input-label">{label}</label>
+          <label htmlFor={id} className="input-label">{label}</label>
           {required && <span style={{ color: "red" }}>*</span>}
         </div>
       )}

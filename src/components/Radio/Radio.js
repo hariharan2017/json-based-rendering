@@ -9,7 +9,7 @@ export default function Radio({ id, title, options, value, onChange }) {
         return (
           <div key={option.id}>
             <input className="radio-option-box" type={"radio"} key={option.id} id={option.id} name={option.name} checked={value == option.id} onChange={onChange}/>
-            <label className="radio-option-label" htmlFor={option.label}>{option.label}</label>
+            <label className="radio-option-label" htmlFor={option.id}>{option.label}</label>
           </div>
         );
       })}
