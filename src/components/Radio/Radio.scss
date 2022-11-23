@@ -1,0 +1,20 @@
+.radio-container {
+  margin-bottom: 2rem;
+
+  .radio-title {
+    font-size: 14px;
+  }
+
+  .radio-options-container {
+    margin: 1rem 0;
+
+    div {
+      margin-top: 0.5rem;
+    }
+
+    .radio-option-label {
+      font-size: 14px;
+      margin-left: 0.5rem;
+    }
+  }
+}
