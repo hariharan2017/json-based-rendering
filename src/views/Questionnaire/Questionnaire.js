@@ -6,6 +6,7 @@ import questions from "../../data/questions.json";
 import TextField from "../../components/TextField";
 import TextArea from "../../components/TextArea";
 import Radio from "../../components/Radio";
+import Select from "../../components/Select";
 import "./Questionnaire.scss";
 
 const Questionnaire = () => {
@@ -61,6 +62,15 @@ const Questionnaire = () => {
                   onChange={(event) => handleOnChange("radio", event, section, question.id)}
                 />
               )
+            } else if (question.element === "select") {
+              questionListInitial.push(
+                <Select
+                  id={question.id}
+                  title={question.title}
+                  options={question.options}
+                  onChange={(event) => handleOnChange("select", event, section, question.id)}
+                />
+              )
             }
           }
         });
@@ -73,7 +83,9 @@ const Questionnaire = () => {
     if(type === "input") {
       dispatch(actions.changeData({ id: event.target.id, value: event.target.value, section }));
     } else if (type === "radio") {
-      dispatch(actions.changeData({ id: questionId, value: event.target.id, section }));
+      dispatch(actions.changeData({ id: questionId, value: Number(event.target.id), section }));
+    } else if (type === "select") {
+      dispatch(actions.changeData({ id: questionId, value: Number(event.target.value), section }));
     }
   });
 

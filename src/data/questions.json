@@ -125,6 +125,92 @@
         "visible": false,
         "placeholder": "Enter you comments here"
       }
+    ],
+    "product 2": [
+      {
+        "id": 4000,
+        "title": "How would you rate product 2?",
+        "element": "select",
+        "colSize": "100%",
+        "visible": true,
+        "options": [
+          {
+            "id": 600,
+            "name": "rating",
+            "label": 0
+          },
+          {
+            "id": 601,
+            "name": "rating",
+            "label": 1
+          },
+          {
+            "id": 602,
+            "name": "rating",
+            "label": 2
+          },
+          {
+            "id": 603,
+            "name": "rating",
+            "label": 3
+          },
+          {
+            "id": 604,
+            "name": "rating",
+            "label": 4
+          },
+          {
+            "id": 605,
+            "name": "rating",
+            "label": 5
+          },
+          {
+            "id": 606,
+            "name": "rating",
+            "label": 6
+          },
+          {
+            "id": 607,
+            "name": "rating",
+            "label": 7
+          },
+          {
+            "id": 608,
+            "name": "rating",
+            "label": 8
+          },
+          {
+            "id": 609,
+            "name": "rating",
+            "label": 9
+          },
+          {
+            "id": 610,
+            "name": "rating",
+            "label": 10
+          }
+        ],
+        "changes": {
+          "ids": [4001, 4002],
+          "condition": [600, 601, 602, 603, 604, 605]
+        }
+      },
+      {
+        "id": 4001,
+        "label": "Why are you unsatisfied?",
+        "element": "textArea",
+        "colSize": "100%",
+        "visible": false,
+        "placeholder": "Enter you comments here"
+      },
+      {
+        "id": 4002,
+        "label": "How would you like us to improve the product",
+        "element": "textArea",
+        "colSize": "100%",
+        "visible": false,
+        "placeholder": "Enter you comments here"
+      }
     ]
   }
 }

@@ -1,8 +1,8 @@
 import "./Radio.scss";
 
-export default function Radio({ id, title, options, value, onChange }) {
+export default function Radio({ id, title, options, value, onChange, width = "100%" }) {
   return (
-    <div key={id} className="radio-container">
+    <div key={id} className="radio-container" style={{ width }}>
       <label className="radio-title">{title}</label>
       <div key={id} className="radio-options-container">
       {options.map((option) => {  

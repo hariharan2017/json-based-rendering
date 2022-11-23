@@ -40,16 +40,21 @@ const questionDataReducer = (state, action) => {
   switch (action.type) {
     case actionTypes.CHANGE_QUESTION_DATA:
       const { id, value, section } = action.data;
+      const questionCondition = questionsList[section][id]?.changes?.condition;
 
-      if(value && questionsList[section][id]?.changes?.condition === true) {
+      if(value && questionCondition === true) {
         toggleQuestionVisibility(questionsList, section, id, state, true);
-      } else if (!value && questionsList[section][id]?.changes?.condition === true) {    
+      } else if (!value && questionCondition === true) {    
         toggleQuestionVisibility(questionsList, section, id, state, false);
-      } else if (value && questionsList[section][id]?.changes?.condition == value) {
+      } else if (value && Array.isArray(questionCondition) && questionCondition.indexOf(value) > -1) {
         toggleQuestionVisibility(questionsList, section, id, state, true);
-      } else if (value && questionsList[section][id]?.changes?.condition != value) {
+      } else if (value && Array.isArray(questionCondition) && questionCondition.indexOf(value) == -1) {
         toggleQuestionVisibility(questionsList, section, id, state, false);
-      }
+      } else if (value && questionCondition == value) {
+        toggleQuestionVisibility(questionsList, section, id, state, true);
+      } else if (value && questionCondition != value) {
+        toggleQuestionVisibility(questionsList, section, id, state, false);
+      } 
 
       return {
         ...state,
