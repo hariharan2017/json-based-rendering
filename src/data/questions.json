@@ -66,7 +66,8 @@
         "visible": false,
         "depends": {
           "id": 1000
-        }
+        },
+        "placeholder": "Enter you comments here"
       },
       {
         "id": 3001,
@@ -76,7 +77,8 @@
         "visible": false,
         "depends": {
           "id": 1000
-        }
+        },
+        "placeholder": "Enter you comments here"
       },
       {
         "id": 3002,
@@ -86,7 +88,8 @@
         "visible": false,
         "depends": {
           "id": 1000
-        }
+        },
+        "placeholder": "Enter you comments here"
       },
       {
         "id": 3003,
@@ -96,7 +99,8 @@
         "visible": false,
         "depends": {
           "id": 1000
-        }
+        },
+        "placeholder": "Enter you comments here"
       },
       {
         "id": 3004,
@@ -106,7 +110,8 @@
         "visible": false,
         "depends": {
           "id": 1000
-        }
+        },
+        "placeholder": "Enter you comments here"
       },
       {
         "id": 3005,
@@ -116,7 +121,8 @@
         "visible": false,
         "depends": {
           "id": 1000
-        }
+        },
+        "placeholder": "Enter you comments here"
       }
     ]
   }

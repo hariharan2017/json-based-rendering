@@ -34,6 +34,7 @@ const Questionnaire = () => {
                   required={question.validation?.required}
                   width={question.colSize}
                   value={questionsData?.[question.id] || ""}
+                  placeholder={question.placeholder}
                   onChange={(event) => handleOnChange("input", event, section)}
                 />
               );
@@ -45,6 +46,7 @@ const Questionnaire = () => {
                   label={question.label}
                   required={question.validation?.required}
                   value={questionsData?.[question.id] || ""}
+                  placeholder={question.placeholder}
                   onChange={(event) => handleOnChange("input", event, section)}
                 />
               );
