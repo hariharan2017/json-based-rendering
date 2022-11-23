@@ -5,6 +5,7 @@ import { myDebounce } from "../../helpers";
 import questions from "../../data/questions.json";
 import TextField from "../../components/TextField";
 import TextArea from "../../components/TextArea";
+import Radio from "../../components/Radio";
 import "./Questionnaire.scss";
 
 const Questionnaire = () => {
@@ -50,16 +51,30 @@ const Questionnaire = () => {
                   onChange={(event) => handleOnChange("input", event, section)}
                 />
               );
+            } else if (question.element === "radio") {
+              questionListInitial.push(
+                <Radio
+                  id={question.id}
+                  title={question.title}
+                  options={question.options}
+                  value={questionsData?.data?.[question.id]}
+                  onChange={(event) => handleOnChange("radio", event, section, question.id)}
+                />
+              )
             }
           }
         });
     });
 
     setQuestionsList(questionListInitial);
-  }, [JSON.stringify(questionsData.questionVisibility)]);
+  }, [JSON.stringify(questionsData)]);
 
-  const handleOnChange = myDebounce((type, event, section) => {
-    dispatch(actions.changeData({ id: event.target.id, value: event.target.value, section }));
+  const handleOnChange = myDebounce((type, event, section, questionId) => {
+    if(type === "input") {
+      dispatch(actions.changeData({ id: event.target.id, value: event.target.value, section }));
+    } else if (type === "radio") {
+      dispatch(actions.changeData({ id: questionId, value: event.target.id, section }));
+    }
   });
 
   return (

@@ -1,6 +1,12 @@
 import * as actionTypes from "./types";
 import questions from "../../data/questions.json";
 
+const toggleQuestionVisibility = (questionsList, section, id, state, changeTo) => {
+  questionsList[section][id].changes.ids.forEach((id) => {
+    state.questionVisibility[id].shouldShow = changeTo;
+  })
+}
+
 const questionDataReducer = (state, action) => {
   state = state || { data: {}, sections: [], questionsList: {}, questionVisibility: {}, errors: {} };
 
@@ -36,13 +42,13 @@ const questionDataReducer = (state, action) => {
       const { id, value, section } = action.data;
 
       if(value && questionsList[section][id]?.changes?.condition === true) {
-        questionsList[section][id].changes.ids.forEach((id) => {
-          state.questionVisibility[id].shouldShow = true;
-        })
-      } else if (!value && questionsList[section][id]?.changes?.condition === true) {
-        questionsList[section][id].changes.ids.forEach((id) => {
-          state.questionVisibility[id].shouldShow = false;
-        })
+        toggleQuestionVisibility(questionsList, section, id, state, true);
+      } else if (!value && questionsList[section][id]?.changes?.condition === true) {    
+        toggleQuestionVisibility(questionsList, section, id, state, false);
+      } else if (value && questionsList[section][id]?.changes?.condition == value) {
+        toggleQuestionVisibility(questionsList, section, id, state, true);
+      } else if (value && questionsList[section][id]?.changes?.condition != value) {
+        toggleQuestionVisibility(questionsList, section, id, state, false);
       }
 
       return {

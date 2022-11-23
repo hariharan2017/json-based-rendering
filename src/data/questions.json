@@ -17,10 +17,6 @@
         "validation": {
           "required": true
         },
-        "changes": {
-          "ids": [3000, 3001, 3002, 3003, 3004, 3005],
-          "condition": true
-        },
         "colSize": "50%"
       },
       {
@@ -60,68 +56,73 @@
     "product 1": [
       {
         "id": 3000,
+        "title": "Have you used Product 1?",
+        "element": "radio",
+        "colSize": "100%",
+        "visible": true,
+        "options": [
+          {
+            "id": 501,
+            "name": "product-1",
+            "label": "Yes"
+          },
+          {
+            "id": 502,
+            "name": "product-1",
+            "label": "No"
+          }
+        ],
+        "changes": {
+          "ids": [3001, 3002, 3003, 3004, 3005, 3006],
+          "condition": 501
+        }
+      },
+      {
+        "id": 3001,
         "label": "How long have you been using this product and why?",
         "element": "textArea",
         "colSize": "100%",
         "visible": false,
-        "depends": {
-          "id": 1000
-        },
-        "placeholder": "Enter you comments here"
-      },
-      {
-        "id": 3001,
-        "label": "Write your comments and suggestions about our products in comparison with other competitors",
-        "element": "textArea",
-        "colSize": "100%",
-        "visible": false,
-        "depends": {
-          "id": 1000
-        },
         "placeholder": "Enter you comments here"
       },
       {
         "id": 3002,
-        "label": "Are you satisfied with our product performance? Share your opinions:",
+        "label": "Write your comments and suggestions about our products in comparison with other competitors",
         "element": "textArea",
         "colSize": "100%",
         "visible": false,
-        "depends": {
-          "id": 1000
-        },
         "placeholder": "Enter you comments here"
       },
       {
         "id": 3003,
-        "label": "Tell us something about your shopping experiences to buy our product:",
+        "label": "Are you satisfied with our product performance? Share your opinions:",
         "element": "textArea",
         "colSize": "100%",
         "visible": false,
-        "depends": {
-          "id": 1000
-        },
         "placeholder": "Enter you comments here"
       },
       {
         "id": 3004,
-        "label": "Would you like to continue with our product? If no why:",
+        "label": "Tell us something about your shopping experiences to buy our product:",
         "element": "textArea",
         "colSize": "100%",
         "visible": false,
-        "depends": {
-          "id": 1000
-        },
         "placeholder": "Enter you comments here"
       },
       {
         "id": 3005,
+        "label": "Would you like to continue with our product? If no why:",
+        "element": "textArea",
+        "colSize": "100%",
+        "visible": false,
+        "placeholder": "Enter you comments here"
+      },
+      {
+        "id": 3006,
         "label": "What kind of changes would you like to see in our products so as to enhance your satisfaction level?",
         "element": "textArea",
         "colSize": "100%",
         "visible": false,
-        "depends": {
-          "id": 1000
-        },
         "placeholder": "Enter you comments here"
       }
     ]
