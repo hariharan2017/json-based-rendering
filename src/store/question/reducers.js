@@ -1,8 +1,8 @@
 import * as actionTypes from "./types";
 import questions from "../../data/questions.json";
 
-const toggleQuestionVisibility = (questionsList, section, id, state, changeTo) => {
-  questionsList[section][id].changes.ids.forEach((id) => {
+const toggleQuestionVisibility = (questionsList, id, state, changeTo) => {
+  questionsList[id].changes.ids.forEach((id) => {
     state.questionVisibility[id].shouldShow = changeTo;
   })
 }
@@ -10,50 +10,62 @@ const toggleQuestionVisibility = (questionsList, section, id, state, changeTo) =
 const questionDataReducer = (state, action) => {
   state = state || { data: {}, sections: [], questionsList: {}, questionVisibility: {}, errors: {} };
 
-  const questionsList = {};
-  const questionVisibility = {};
-
-  let total = 0;
-
-  const { sections } = questions.allQuestions;
-
-  sections.forEach((section) => {
-    questionsList[section] = {};
-
-    questions.allQuestions?.[section] && questions.allQuestions?.[section].forEach((question, index) => {
-      questionsList[section][question.id] = {
-        ...question,
-        index,
-        total: total++
-      };
-
-      questionVisibility[question.id] = {
-        shouldShow: question.visible,
-      }
-    });
-  });
-
-  state.sections = [...sections];
-  state.questionsList = JSON.parse(JSON.stringify(questionVisibility));
-  state.questionVisibility = JSON.parse(JSON.stringify(questionVisibility));
-
   switch (action.type) {
-    case actionTypes.CHANGE_QUESTION_DATA:
-      const { id, value, section } = action.data;
-      const questionCondition = questionsList[section][id]?.changes?.condition;
+    case actionTypes.SET_INITIAL_STATE:
+      const initialQuestionsSectionList = {};
+      const initialQuestionsList = {};
+      const initialQuestionVisibility = {};
+    
+      let total = 0;
+    
+      const { sections: resSections } = questions.allQuestions;
+    
+      resSections.forEach((section) => {
+        initialQuestionsSectionList[section] = {};
+        initialQuestionsList[section] = {};
+    
+        questions.allQuestions?.[section] && questions.allQuestions?.[section].forEach((question, index) => {
+          initialQuestionsSectionList[section][question.id] = {
+            ...question,
+            index,
+            total: total++
+          };
+    
+          initialQuestionsList[question.id] = {
+            ...question,
+            index,
+            total: total++
+          };
+    
+          initialQuestionVisibility[question.id] = {
+            shouldShow: question.visible,
+          }
+        });
+      });
 
+      return {
+        ...state,
+        sections: [...resSections],
+        questionsSectionList: JSON.parse(JSON.stringify(initialQuestionsSectionList)),
+        questionsList: JSON.parse(JSON.stringify(initialQuestionsList)),
+        questionVisibility: JSON.parse(JSON.stringify(initialQuestionVisibility)),
+      }
+
+    case actionTypes.CHANGE_QUESTION_DATA:
+      const { id, value } = action.data;
+      const questionCondition = state.questionsList[id]?.changes?.condition;
       if(value && questionCondition && questionCondition === true) {
-        toggleQuestionVisibility(questionsList, section, id, state, true);
+        toggleQuestionVisibility(state.questionsList, id, state, true);
       } else if (!value && questionCondition && questionCondition === true) {    
-        toggleQuestionVisibility(questionsList, section, id, state, false);
+        toggleQuestionVisibility(state.questionsList, id, state, false);
       } else if (value && questionCondition && Array.isArray(questionCondition) && questionCondition.indexOf(value) > -1) {
-        toggleQuestionVisibility(questionsList, section, id, state, true);
+        toggleQuestionVisibility(state.questionsList, id, state, true);
       } else if (value && questionCondition && Array.isArray(questionCondition) && questionCondition.indexOf(value) == -1) {
-        toggleQuestionVisibility(questionsList, section, id, state, false);
+        toggleQuestionVisibility(state.questionsList, id, state, false);
       } else if (value && questionCondition && questionCondition == value) {
-        toggleQuestionVisibility(questionsList, section, id, state, true);
+        toggleQuestionVisibility(state.questionsList, id, state, true);
       } else if (value && questionCondition && questionCondition != value) {
-        toggleQuestionVisibility(questionsList, section, id, state, false);
+        toggleQuestionVisibility(state.questionsList, id, state, false);
       } 
 
       return {

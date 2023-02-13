@@ -15,12 +15,11 @@ const Question = ({
   placeholder,
   title,
   options,
-  section,
   questionsData,
   handleOnChange,
 }) => {
   const handleChange = (event) => {
-    handleOnChange(element, event, section, id)
+    handleOnChange(element, event, id)
   }
 
   if (element === "input") {
@@ -31,7 +30,7 @@ const Question = ({
         type={type}
         label={label}
         width={width}
-        value={questionsData?.[id] || ""}
+        // value={questionsData?.[id] || ""}
         placeholder={placeholder}
         onChange={handleChange}
       />
@@ -42,7 +41,7 @@ const Question = ({
         key={id}
         id={id}
         label={label}
-        value={questionsData?.[id] || ""}
+        // value={questionsData?.data?.[id] || ""}
         placeholder={placeholder}
         onChange={handleChange}
       />
