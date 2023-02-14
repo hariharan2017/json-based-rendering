@@ -1,4 +1,4 @@
-import React from 'react';
+import { JSON_EDITOR, QUESTIONNAIRE } from "../../../constants/constants";
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,11 +13,11 @@ import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 const drawerWidth = 240;
 
 const menuItems = [
-  { label: "Questionnaire", icon: <HelpCenterIcon /> },
-  { label: "JSON Editor", icon: <EditIcon /> }
+  { label: JSON_EDITOR, icon: <EditIcon /> },
+  { label: QUESTIONNAIRE, icon: <HelpCenterIcon /> }
 ];
 
-export default function Sidebar({ children }) {
+export default function Sidebar({ children, tab, setTab }) {
   return (
     <Box sx={{ display: 'flex' }}>
       <Drawer
@@ -32,7 +32,7 @@ export default function Sidebar({ children }) {
         <Box sx={{ overflow: 'auto' }}>
           {menuItems.map((item) => {
             return (
-              <ListItem key={item.label} >
+              <ListItem key={item.label} onClick={() => setTab(item.label)} style={{ backgroundColor: tab === item.label ? "#cdcdcd" : "" }}>
                 <ListItemButton>
                   <ListItemIcon>
                     <div style={{ marginRight: "10px" }}>{item.icon}</div>

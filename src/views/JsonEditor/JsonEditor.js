@@ -24,7 +24,7 @@ const JsonEditor = () => {
         placeholder={initialData}
         // colors={darktheme}
         locale={locale}
-        height="550px"
+        height="100vh"
         width="75vw"
         onChange={handleChange}
         waitAfterKeyPress={2000}
