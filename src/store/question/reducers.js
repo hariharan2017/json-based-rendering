@@ -1,5 +1,4 @@
 import * as actionTypes from "./types";
-import questions from "../../data/questions.json";
 
 const toggleQuestionVisibility = (questionsList, id, state, changeTo) => {
   questionsList[id].changes.ids.forEach((id) => {
@@ -19,13 +18,13 @@ const questionDataReducer = (state, action) => {
     
       let total = 0;
     
-      const { sections: resSections } = questions.allQuestions;
+      const { sections: resSections } = action.response?.allQuestions;
     
       resSections.forEach((section) => {
         initialQuestionsSectionList[section] = {};
         initialQuestionsList[section] = {};
     
-        questions.allQuestions?.[section] && questions.allQuestions?.[section].forEach((question, index) => {
+        action.response?.allQuestions?.[section] && action.response?.allQuestions?.[section].forEach((question, index) => {
           initialData[question.id] = question?.value;
 
           initialQuestionsSectionList[section][question.id] = {

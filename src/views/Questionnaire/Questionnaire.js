@@ -13,10 +13,6 @@ const Questionnaire = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actions.setInitialState());
-  }, []);
-
-  useEffect(() => {
     const renderedQuestions = [];
     for (const [key, value] of Object.entries(questionsData.questionVisibility)) {
       if(value?.shouldShow) {
