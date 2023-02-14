@@ -30,7 +30,7 @@ const Question = ({
         type={type}
         label={label}
         width={width}
-        // value={questionsData?.[id] || ""}
+        value={value || ""}
         placeholder={placeholder}
         onChange={handleChange}
       />
@@ -41,7 +41,7 @@ const Question = ({
         key={id}
         id={id}
         label={label}
-        // value={questionsData?.data?.[id] || ""}
+        value={value || ""}
         placeholder={placeholder}
         onChange={handleChange}
       />

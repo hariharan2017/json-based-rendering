@@ -7,7 +7,7 @@ import Questionnaire from "./views/Questionnaire";
 function App() {
   return (
     <Provider store={store}>
-      <div className="App" style={{ height: "100vh" }}>
+      <div className="App" style={{ height: "100%" }}>
         <Topbar />
         {/* To check sticky topbar
       {[...Array(100).keys()].map((item) => {
