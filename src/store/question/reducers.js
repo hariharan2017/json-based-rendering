@@ -12,6 +12,7 @@ const questionDataReducer = (state, action) => {
 
   switch (action.type) {
     case actionTypes.SET_INITIAL_STATE:
+      const initialData = {};
       const initialQuestionsSectionList = {};
       const initialQuestionsList = {};
       const initialQuestionVisibility = {};
@@ -25,6 +26,8 @@ const questionDataReducer = (state, action) => {
         initialQuestionsList[section] = {};
     
         questions.allQuestions?.[section] && questions.allQuestions?.[section].forEach((question, index) => {
+          initialData[question.id] = question?.value;
+
           initialQuestionsSectionList[section][question.id] = {
             ...question,
             index,
@@ -45,6 +48,7 @@ const questionDataReducer = (state, action) => {
 
       return {
         ...state,
+        data: {...initialData},
         sections: [...resSections],
         questionsSectionList: JSON.parse(JSON.stringify(initialQuestionsSectionList)),
         questionsList: JSON.parse(JSON.stringify(initialQuestionsList)),
