@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import Topbar from "./components/Layout/Topbar";
 import Sidebar from "./components/Layout/Sidebar"; 
 import Questionnaire from "./views/Questionnaire";
+import JsonEditor from "./views/JsonEditor";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         return <div style={{ margin: "10px", backgroundColor: "grey" }}>{item}</div>
       })} */}
         <Sidebar>
-          <Questionnaire />
+          {/* <Questionnaire /> */}
+          <JsonEditor />
         </Sidebar >
       </div>
     </Provider>
