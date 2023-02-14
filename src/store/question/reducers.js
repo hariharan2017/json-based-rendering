@@ -7,7 +7,7 @@ const toggleQuestionVisibility = (questionsList, id, state, changeTo) => {
 }
 
 const questionDataReducer = (state, action) => {
-  state = state || { data: {}, sections: [], questionsList: {}, questionVisibility: {}, errors: {} };
+  state = state || { data: {}, sections: [], questionsList: {}, questionVisibility: {}, errors: {}, original: null };
 
   switch (action.type) {
     case actionTypes.SET_INITIAL_STATE:
@@ -47,6 +47,7 @@ const questionDataReducer = (state, action) => {
 
       return {
         ...state,
+        original: action.response,
         data: {...initialData},
         sections: [...resSections],
         questionsSectionList: JSON.parse(JSON.stringify(initialQuestionsSectionList)),
