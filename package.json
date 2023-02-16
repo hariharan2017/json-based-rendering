@@ -13,6 +13,7 @@
     "react-json-editor-ajrm": "^2.5.14",
     "react-redux": "^7.2.9",
     "react-scripts": "5.0.1",
+    "react-toastify": "^9.1.1",
     "redux": "^4.2.0",
     "redux-saga": "^1.2.1",
     "sass": "^1.56.1",

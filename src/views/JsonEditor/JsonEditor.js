@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../../store/question";
+import { toast } from 'react-toastify';
 import JSONInput from "react-json-editor-ajrm";
 import locale from "react-json-editor-ajrm/locale/en";
 import initialData from "../../data/questions.json";
@@ -19,6 +20,16 @@ const JsonEditor = () => {
   const handleChange = (event) => {
     if (!event.error) {
       dispatch(actions.setInitialState(event.jsObject));
+      toast("Updated JSON questionnaire", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   };
 
