@@ -11,7 +11,7 @@
       {
         "id": 1000,
         "label": "First Name",
-        "element": "input",
+        "element": "material-input",
         "type": "text",
         "visible": true,
         "value": "Hariharan",
@@ -23,7 +23,7 @@
       {
         "id": 1001,
         "label": "Last Name",
-        "element": "input",
+        "element": "material-input",
         "type": "text",
         "visible": true,
         "validation": {},
@@ -32,7 +32,7 @@
       {
         "id": 1002,
         "label": "E-Mail",
-        "element": "input",
+        "element": "material-input",
         "type": "email",
         "visible": true,
         "colSize": "100%"
@@ -40,7 +40,7 @@
       {
         "id": 1003,
         "label": "Age",
-        "element": "input",
+        "element": "material-input",
         "type": "number",
         "visible": true,
         "colSize": "25%"
@@ -48,7 +48,7 @@
       {
         "id": 1004,
         "label": "Contact Number",
-        "element": "input",
+        "element": "material-input",
         "type": "text",
         "visible": true,
         "colSize": "75%"
@@ -58,18 +58,17 @@
       {
         "id": 3000,
         "title": "Have you used Product 1?",
-        "element": "radio",
+        "element": "material-radio",
         "colSize": "100%",
         "visible": true,
+        "name": "product-1",
         "options": [
           {
             "id": 501,
-            "name": "product-1",
             "label": "Yes"
           },
           {
             "id": 502,
-            "name": "product-1",
             "label": "No"
           }
         ],
@@ -81,7 +80,7 @@
       {
         "id": 3001,
         "label": "How long have you been using this product and why?",
-        "element": "textArea",
+        "element": "material-textArea",
         "colSize": "100%",
         "visible": false,
         "placeholder": "Enter you comments here"
@@ -89,7 +88,7 @@
       {
         "id": 3002,
         "label": "Write your comments and suggestions about our products in comparison with other competitors",
-        "element": "textArea",
+        "element": "material-textArea",
         "colSize": "100%",
         "visible": false,
         "placeholder": "Enter you comments here"
@@ -97,7 +96,7 @@
       {
         "id": 3003,
         "label": "Are you satisfied with our product performance? Share your opinions:",
-        "element": "textArea",
+        "element": "material-textArea",
         "colSize": "100%",
         "visible": false,
         "placeholder": "Enter you comments here"
@@ -105,7 +104,7 @@
       {
         "id": 3004,
         "label": "Tell us something about your shopping experiences to buy our product:",
-        "element": "textArea",
+        "element": "material-textArea",
         "colSize": "100%",
         "visible": false,
         "placeholder": "Enter you comments here"
@@ -113,7 +112,7 @@
       {
         "id": 3005,
         "label": "Would you like to continue with our product? If no why:",
-        "element": "textArea",
+        "element": "material-textArea",
         "colSize": "100%",
         "visible": false,
         "placeholder": "Enter you comments here"
@@ -121,7 +120,7 @@
       {
         "id": 3006,
         "label": "What kind of changes would you like to see in our products so as to enhance your satisfaction level?",
-        "element": "textArea",
+        "element": "material-textArea",
         "colSize": "100%",
         "visible": false,
         "placeholder": "Enter you comments here"
@@ -131,63 +130,53 @@
       {
         "id": 4000,
         "title": "How would you rate product 2?",
-        "element": "select",
-        "colSize": "100%",
+        "element": "material-select",
+        "colSize": "50%",
         "visible": true,
+        "name": "rating",
         "options": [
           {
             "id": 600,
-            "name": "rating",
             "label": 0
           },
           {
             "id": 601,
-            "name": "rating",
             "label": 1
           },
           {
             "id": 602,
-            "name": "rating",
             "label": 2
           },
           {
             "id": 603,
-            "name": "rating",
             "label": 3
           },
           {
             "id": 604,
-            "name": "rating",
             "label": 4
           },
           {
             "id": 605,
-            "name": "rating",
             "label": 5
           },
           {
             "id": 606,
-            "name": "rating",
             "label": 6
           },
           {
             "id": 607,
-            "name": "rating",
             "label": 7
           },
           {
             "id": 608,
-            "name": "rating",
             "label": 8
           },
           {
             "id": 609,
-            "name": "rating",
             "label": 9
           },
           {
             "id": 610,
-            "name": "rating",
             "label": 10
           }
         ],
@@ -199,7 +188,7 @@
       {
         "id": 4001,
         "label": "Why are you unsatisfied?",
-        "element": "textArea",
+        "element": "material-textArea",
         "colSize": "100%",
         "visible": false,
         "placeholder": "Enter you comments here"
@@ -207,7 +196,7 @@
       {
         "id": 4002,
         "label": "How would you like us to improve the product",
-        "element": "textArea",
+        "element": "material-textArea",
         "colSize": "100%",
         "visible": false,
         "placeholder": "Enter you comments here"

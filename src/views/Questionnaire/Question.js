@@ -2,6 +2,11 @@ import Radio from "../../components/Radio";
 import Select from "../../components/Select";
 import TextArea from "../../components/TextArea";
 import TextField from "../../components/TextField";
+import MaterialRadio from "../../components/MaterialRadio";
+import MaterialSelect from "../../components/MaterialSelect";
+import { default as MaterialTextField } from '@mui/material/TextField';
+import { setMaterialWidth } from "../../helpers/utils";
+import { MATERIAL_MARGIN } from "../../constants/cssConstants";
 
 const Question = ({
   element,
@@ -16,6 +21,7 @@ const Question = ({
   title,
   options,
   questionsData,
+  name,
   handleOnChange,
 }) => {
   const handleChange = (event) => {
@@ -30,7 +36,7 @@ const Question = ({
         type={type}
         label={label}
         width={width}
-        value={value || ""}
+        value={value}
         placeholder={placeholder}
         onChange={handleChange}
       />
@@ -41,7 +47,7 @@ const Question = ({
         key={id}
         id={id}
         label={label}
-        value={value || ""}
+        value={value}
         placeholder={placeholder}
         onChange={handleChange}
       />
@@ -53,6 +59,7 @@ const Question = ({
         title={title}
         options={options}
         value={questionsData?.data?.[id]}
+        name={name}
         onChange={handleChange}
       />
     );
@@ -62,6 +69,55 @@ const Question = ({
         id={id}
         title={title}
         options={options}
+        onChange={handleChange}
+      />
+    );
+  } else if (element === "material-input") {
+    return (
+      <MaterialTextField
+        sx={{ width: setMaterialWidth(width), margin: MATERIAL_MARGIN }}
+        key={id}
+        id={id}
+        type={type}
+        label={label}
+        value={value}
+        placeholder={placeholder}
+        onChange={handleChange}
+      />
+    );
+  } else if (element === "material-textArea") {
+    return (
+      <MaterialTextField
+        sx={{ width: setMaterialWidth(width), margin: MATERIAL_MARGIN }}
+        key={id}
+        id={id}
+        type={type}
+        label={label}
+        value={value}
+        placeholder={placeholder}
+        multiline
+        rows={4}
+        onChange={handleChange}
+      />
+    )
+  } else if (element === "material-radio") {
+    return (
+      <MaterialRadio
+        id={id}
+        title={title}
+        options={options}
+        width={width}
+        value={questionsData?.data?.[id]}
+        onChange={handleChange}
+      />
+    );
+  } else if (element === "material-select") {
+    return (
+      <MaterialSelect
+        id={id}
+        title={title}
+        options={options}
+        width={width}
         onChange={handleChange}
       />
     );

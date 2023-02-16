@@ -27,6 +27,7 @@ const Questionnaire = () => {
             value={questionsData.data?.[key]}
             placeholder={questionsData.questionsList[key].placeholder}
             title={questionsData.questionsList[key].title}
+            name={questionsData.questionsList[key].name}
             options={questionsData.questionsList[key].options}
             questionsData={questionsData}
             handleOnChange={handleOnChange}
@@ -39,14 +40,16 @@ const Questionnaire = () => {
   }, [JSON.stringify(questionsData)]);
 
   const handleOnChange = (type, event, questionId) => {
-    if(type === "input") {
-      dispatch(actions.changeData({ id: event.target.id, value: event.target.value }));
-    } else if(type === "textArea") {
-      dispatch(actions.changeData({ id: event.target.id, value: event.target.value }));
-    } else if (type === "radio") {
-      dispatch(actions.changeData({ id: questionId, value: Number(event.target.id) }));
-    } else if (type === "select") {
-      dispatch(actions.changeData({ id: questionId, value: Number(event.target.value) }));
+    const id = event.target.id;
+    const value = event.target.value;
+    if(type === "input" || type === "material-input") {
+      dispatch(actions.changeData({ id, value}));
+    } else if(type === "textArea" || type === "material-textArea") {
+      dispatch(actions.changeData({ id, value }));
+    } else if (type === "radio" || type === "material-radio") {
+      dispatch(actions.changeData({ id: questionId, value: Number(value) }));
+    } else if (type === "select" || type === "material-select") {
+      dispatch(actions.changeData({ id: questionId, value: Number(value) }));
     }
   };
 
