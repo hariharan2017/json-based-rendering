@@ -6,6 +6,7 @@ import questions from "../../data/questions.json";
 import Question from "./Question";
 import Button from '@mui/material/Button';
 import "./Questionnaire.scss";
+import { formValidator } from "../../helpers/formValidator";
 
 const Questionnaire = () => {
   const [questionsList, setQuestionsList] = useState([]);
@@ -64,22 +65,7 @@ const Questionnaire = () => {
     const errObj = {};
     for (const [key, value] of Object.entries(questionsData.questionVisibility)) {
       if(value?.shouldShow) {
-        const errors = [];
-        questionsData.questionsList[key]?.validation?.forEach((val) => {
-          const data = questionsData.data?.[key];
-          if("required" in val) {
-            if(!data) errors.push(val.message);
-          }
-          if("min" in val) {
-            if(data?.length < val.min) errors.push(val.message);
-          }
-          if("max" in val) {
-            if(data?.length > val.max) errors.push(val.message);
-          }
-          if("pattern" in val) {
-            if(!data?.match(val.pattern)) errors.push(val.message);
-          }
-        });
+        const errors = formValidator(questionsData.questionsList[key]?.validation || [], questionsData.data?.[key]);
         if(errors.length) errObj[key] = errors;
       }
     };
