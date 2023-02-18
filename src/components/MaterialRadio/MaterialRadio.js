@@ -12,7 +12,7 @@ function MaterialRadio ({ id, title, name, options, value, onChange, width = "10
       <RadioGroup name={name} value={value} onChange={onChange}>
         {options.map((option) => {
           return (
-            <FormControlLabel value={option.id} label={option.label} control={<Radio />}/>
+            <FormControlLabel key={option.id} value={option.id} label={option.label} control={<Radio />}/>
           );
         })}
       </RadioGroup>

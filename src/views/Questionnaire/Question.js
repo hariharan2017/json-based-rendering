@@ -10,7 +10,6 @@ import { MATERIAL_MARGIN } from "../../constants/cssConstants";
 
 const Question = ({
   element,
-  key,
   id,
   type,
   label,
@@ -121,6 +120,10 @@ const Question = ({
         onChange={handleChange}
       />
     );
+  } else if (element === "spacer") {
+    return (
+      <div style={{ width }}/>
+    )
   }
 };
 

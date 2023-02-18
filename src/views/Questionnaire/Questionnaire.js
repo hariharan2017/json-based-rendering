@@ -19,8 +19,8 @@ const Questionnaire = () => {
         renderedQuestions.push(
           <Question
             element={questionsData.questionsList[key].element}
-            key={questionsData.questionsList[key].id}
-            id={questionsData.questionsList[key].id}
+            key={String(questionsData.questionsList[key].id)}
+            id={String(questionsData.questionsList[key].id)}
             type={questionsData.questionsList[key].type}
             label={questionsData.questionsList[key].label}
             width={questionsData.questionsList[key].colSize}

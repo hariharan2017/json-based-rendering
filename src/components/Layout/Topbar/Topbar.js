@@ -21,13 +21,13 @@ function Topbar() {
       <div className="user-details-container">
         {profileData.details.map((item) => {
           return (
-            <>
+            <div key={item.label} >
               <div className="info-container">
                 <div className="info-label">{item.label}</div>
                 <div className="info-value">{item.value}</div>
               </div>
               <div className="spacer" />
-            </>
+            </div>
           );
         })}
       </div>
