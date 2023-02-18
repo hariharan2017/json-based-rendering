@@ -13,10 +13,12 @@ const Questionnaire = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const renderedQuestions = [];
-    for (const [key, value] of Object.entries(questionsData.questionVisibility)) {
-      if(value?.shouldShow) {
-        renderedQuestions.push(
+    const sections = {};
+    questionsData?.sections?.forEach((section) => {
+      const renderedQuestions = [];
+      section?.questionOrder?.forEach((key) => {
+        if(questionsData.questionVisibility?.[key]?.shouldShow) {
+          renderedQuestions.push(
           <Question
             element={questionsData.questionsList[key].element}
             key={String(questionsData.questionsList[key].id)}
@@ -33,10 +35,35 @@ const Questionnaire = () => {
             handleOnChange={handleOnChange}
           />
         );
-      }
-    }
+        }
+      })
+      sections[section?.sectionName] = renderedQuestions;
+    });
+    
+    // for (const [key, value] of Object.entries(questionsData.questionVisibility)) {
+    //   if(value?.shouldShow) {
+    //     renderedQuestions.push(
+    //       <Question
+    //         element={questionsData.questionsList[key].element}
+    //         key={String(questionsData.questionsList[key].id)}
+    //         id={String(questionsData.questionsList[key].id)}
+    //         type={questionsData.questionsList[key].type}
+    //         label={questionsData.questionsList[key].label}
+    //         width={questionsData.questionsList[key].colSize}
+    //         value={questionsData.data?.[key]}
+    //         placeholder={questionsData.questionsList[key].placeholder}
+    //         title={questionsData.questionsList[key].title}
+    //         name={questionsData.questionsList[key].name}
+    //         options={questionsData.questionsList[key].options}
+    //         questionsData={questionsData}
+    //         handleOnChange={handleOnChange}
+    //       />
+    //     );
+    //   }
+    // }
 
-    setQuestionsList(renderedQuestions);
+    // setQuestionsList(renderedQuestions);
+    setQuestionsList(sections);
   }, [JSON.stringify(questionsData)]);
 
   const handleOnChange = (type, event, questionId) => {
@@ -58,8 +85,15 @@ const Questionnaire = () => {
       <div className="main-heading">{questions.title}</div>
       {/* <button onClick={() => dispatch(actions.fetchData())}>Test Saga</button> */}
       <div className="questions-container">
-        {questionsList.map((question) => {
-          return question;
+        {questionsData?.sections?.map((section) => {
+          return (
+            <>
+              <div className="section-header">{section?.sectionLabel}</div>
+              {questionsList?.[section?.sectionName]?.map((question) => {
+                return question;
+              })}
+            </>
+          );
         })}
       </div>
     </div>

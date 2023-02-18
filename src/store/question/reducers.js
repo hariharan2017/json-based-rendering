@@ -20,14 +20,14 @@ const questionDataReducer = (state, action) => {
     
       const { sections: resSections } = action.response?.allQuestions;
     
-      resSections.forEach((section) => {
-        initialQuestionsSectionList[section] = {};
-        initialQuestionsList[section] = {};
+      resSections.forEach(({sectionName}) => {
+        initialQuestionsSectionList[sectionName] = {};
+        initialQuestionsList[sectionName] = {};
     
-        action.response?.allQuestions?.[section] && action.response?.allQuestions?.[section].forEach((question, index) => {
+        action.response?.allQuestions?.[sectionName] && action.response?.allQuestions?.[sectionName].forEach((question, index) => {
           initialData[question.id] = question?.value;
 
-          initialQuestionsSectionList[section][question.id] = {
+          initialQuestionsSectionList[sectionName][question.id] = {
             ...question,
             index,
             total: total++

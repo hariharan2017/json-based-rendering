@@ -2,10 +2,21 @@
   "title": "Customer Survey",
   "allQuestions": {
     "sections": [
-      "customer information",
-      "address",
-      "product 1",
-      "product 2"
+      {
+        "sectionName": "customer information",
+        "sectionLabel": "Customer Information",
+        "questionOrder": [1000, 1001, 1005, 1002, 1003, 1004]
+      },
+      {
+        "sectionName": "product 1",
+        "sectionLabel": "Product 1",
+        "questionOrder": [3000, 3001, 3002, 3003, 3004, 3005, 3006]
+      },
+      {
+        "sectionName": "product 2",
+        "sectionLabel": "Product 2",
+        "questionOrder": [4000, 4001, 4002]
+      }
     ],
     "customer information": [
       {
@@ -18,7 +29,7 @@
         "validation": {
           "required": true
         },
-        "colSize": "50%"
+        "colSize": "25%"
       },
       {
         "id": 1001,
@@ -30,12 +41,18 @@
         "colSize": "50%"
       },
       {
+        "id": 1005,
+        "visible": true,
+        "element": "spacer",
+        "colSize": "25%"
+      },
+      {
         "id": 1002,
         "label": "E-Mail",
         "element": "material-input",
         "type": "email",
         "visible": true,
-        "colSize": "100%"
+        "colSize": "25%"
       },
       {
         "id": 1003,
@@ -73,7 +90,14 @@
           }
         ],
         "changes": {
-          "ids": [3001, 3002, 3003, 3004, 3005, 3006],
+          "ids": [
+            3001,
+            3002,
+            3003,
+            3004,
+            3005,
+            3006
+          ],
           "condition": 501
         }
       },
@@ -181,8 +205,18 @@
           }
         ],
         "changes": {
-          "ids": [4001, 4002],
-          "condition": [600, 601, 602, 603, 604, 605]
+          "ids": [
+            4001,
+            4002
+          ],
+          "condition": [
+            600,
+            601,
+            602,
+            603,
+            604,
+            605
+          ]
         }
       },
       {
