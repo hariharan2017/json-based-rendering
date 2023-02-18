@@ -43,29 +43,6 @@ const Questionnaire = () => {
       sections[section?.sectionName] = renderedQuestions;
     });
     
-    // for (const [key, value] of Object.entries(questionsData.questionVisibility)) {
-    //   if(value?.shouldShow) {
-    //     renderedQuestions.push(
-    //       <Question
-    //         element={questionsData.questionsList[key].element}
-    //         key={String(questionsData.questionsList[key].id)}
-    //         id={String(questionsData.questionsList[key].id)}
-    //         type={questionsData.questionsList[key].type}
-    //         label={questionsData.questionsList[key].label}
-    //         width={questionsData.questionsList[key].colSize}
-    //         value={questionsData.data?.[key]}
-    //         placeholder={questionsData.questionsList[key].placeholder}
-    //         title={questionsData.questionsList[key].title}
-    //         name={questionsData.questionsList[key].name}
-    //         options={questionsData.questionsList[key].options}
-    //         questionsData={questionsData}
-    //         handleOnChange={handleOnChange}
-    //       />
-    //     );
-    //   }
-    // }
-
-    // setQuestionsList(renderedQuestions);
     setQuestionsList(sections);
   }, [JSON.stringify(questionsData)]);
 
@@ -106,7 +83,7 @@ const Questionnaire = () => {
         if(errors.length) errObj[key] = errors;
       }
     };
-    
+
     dispatch(actions.setError(errObj));
     if(Object.keys(errObj).length == 0) {
       toast("Data successfully submitted", {
