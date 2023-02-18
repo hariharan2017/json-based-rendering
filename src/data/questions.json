@@ -26,9 +26,6 @@
         "type": "text",
         "visible": true,
         "value": "Hariharan",
-        "validation": {
-          "required": true
-        },
         "colSize": "25%"
       },
       {
@@ -37,7 +34,11 @@
         "element": "material-input",
         "type": "text",
         "visible": true,
-        "validation": {},
+        "validation": [
+          {"required": true, "message": "This field is required to proceed further"},
+          {"min": 5, "message": "Min of 5 characters are required"},
+          {"max": 15, "message": "Max of 15 characters are allowed"}
+        ],
         "colSize": "50%"
       },
       {
@@ -58,8 +59,11 @@
         "id": 1003,
         "label": "Age",
         "element": "material-input",
-        "type": "number",
+        "type": "text",
         "visible": true,
+        "validation": [
+          {"pattern": "^\\d{1,2}$", "message": "Should be in the range 0-99"}
+        ],
         "colSize": "25%"
       },
       {
@@ -68,6 +72,10 @@
         "element": "material-input",
         "type": "text",
         "visible": true,
+        "validation": [
+          {"required": true, "message": "This field is required to proceed further"},
+          {"pattern": "^\\d{10}$", "message": "Should contain 10 digits"}
+        ],
         "colSize": "75%"
       }
     ],
@@ -79,6 +87,9 @@
         "colSize": "100%",
         "visible": true,
         "name": "product-1",
+        "validation": [
+          {"required": true, "message": "This field is required to proceed further"}
+        ],
         "options": [
           {
             "id": 501,
@@ -158,6 +169,9 @@
         "colSize": "50%",
         "visible": true,
         "name": "rating",
+        "validation": [
+          {"required": true, "message": "This field is required to proceed further"}
+        ],
         "options": [
           {
             "id": 600,

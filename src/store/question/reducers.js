@@ -80,6 +80,12 @@ const questionDataReducer = (state, action) => {
         },
         questionVisibility: JSON.parse(JSON.stringify(state.questionVisibility))
       };
+
+    case actionTypes.SET_ERROR:
+      return {
+        ...state,
+        errors: action.err
+      }
     default:
       return state;
   }

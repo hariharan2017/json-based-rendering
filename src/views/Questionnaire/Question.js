@@ -13,7 +13,6 @@ const Question = ({
   id,
   type,
   label,
-  required,
   width,
   value,
   placeholder,
@@ -21,6 +20,7 @@ const Question = ({
   options,
   questionsData,
   name,
+  errors,
   handleOnChange,
 }) => {
   const handleChange = (event) => {
@@ -37,6 +37,7 @@ const Question = ({
         width={width}
         value={value}
         placeholder={placeholder}
+        errors={errors}
         onChange={handleChange}
       />
     );
@@ -81,6 +82,8 @@ const Question = ({
         label={label}
         value={value}
         placeholder={placeholder}
+        error={errors?.length>0}
+        helperText={errors?.[0]}
         onChange={handleChange}
       />
     );
@@ -96,6 +99,8 @@ const Question = ({
         placeholder={placeholder}
         multiline
         rows={4}
+        error={errors?.length>0}
+        helperText={errors?.[0]}
         onChange={handleChange}
       />
     )
@@ -107,6 +112,8 @@ const Question = ({
         options={options}
         width={width}
         value={questionsData?.data?.[id]}
+        error={errors?.length>0}
+        helperText={errors?.[0]}
         onChange={handleChange}
       />
     );
@@ -117,6 +124,8 @@ const Question = ({
         title={title}
         options={options}
         width={width}
+        error={errors?.length>0}
+        helperText={errors?.[0]}
         onChange={handleChange}
       />
     );
