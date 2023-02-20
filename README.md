@@ -10,3 +10,8 @@ Generate questionnaire forms on the fly with a JSON
 - Can render different length question fields by specifying colSize parameter for each question
 - Can change order of questions by modifying questionOrder array
 - Can perform validation at input change or at time of submission based on requirement
+
+
+To see questions hiding and showing in action -
+1) Select Yes and then No for "Have you used Product 1?" question
+2) Select a rating from 0-5 for "How would you rate Product 2?" question
