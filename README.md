@@ -10,6 +10,7 @@ Generate questionnaire forms on the fly with a JSON
 - Can render different length question fields by specifying colSize parameter for each question
 - Can change order of questions by modifying questionOrder array
 - Can perform validation at input change or at time of submission based on requirement
+- Integrated 3rd party JSON Editor to modify and see live changes in questionnaire
 
 <br></br>
 To see questions hiding and showing in action -
