@@ -11,7 +11,7 @@ Generate questionnaire forms on the fly with a JSON
 - Can change order of questions by modifying questionOrder array
 - Can perform validation at input change or at time of submission based on requirement
 
-
+<br></br>
 To see questions hiding and showing in action -
-1) Select Yes and then No for "Have you used Product 1?" question
+1) Select Yes and then No for "Have you used Product 1?" question (or)
 2) Select a rating from 0-5 for "How would you rate Product 2?" question
