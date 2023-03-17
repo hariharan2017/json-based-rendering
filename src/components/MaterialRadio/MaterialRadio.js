@@ -1,3 +1,4 @@
+import { memo } from "react";
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -22,4 +23,4 @@ function MaterialRadio ({ id, title, name, options, value, onChange, error, help
   );
 }
 
-export default MaterialRadio;
+export default memo(MaterialRadio);

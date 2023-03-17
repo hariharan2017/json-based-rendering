@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "../../store/question";
 import { toast } from 'react-toastify';
@@ -35,7 +35,6 @@ const Questionnaire = () => {
             name={questionsData.questionsList[key].name}
             options={questionsData.questionsList[key].options}
             errors={questionsData.errors?.[key]}
-            questionsData={questionsData}
             handleOnChange={handleOnChange}
           />
         );
@@ -47,7 +46,7 @@ const Questionnaire = () => {
     setQuestionsList(sections);
   }, [JSON.stringify(questionsData)]);
 
-  const handleOnChange = (type, event, questionId) => {
+  const handleOnChange = useCallback((type, event, questionId) => {
     const id = event.target.id;
     const value = event.target.value;
     if(type === "input" || type === "material-input") {
@@ -59,7 +58,7 @@ const Questionnaire = () => {
     } else if (type === "select" || type === "material-select") {
       dispatch(actions.changeData({ id: questionId, value: Number(value) }));
     }
-  };
+  }, []);
 
   const handleSubmit = () => {
     const errObj = {};
@@ -102,7 +101,7 @@ const Questionnaire = () => {
             </div>
           );
         })}
-        <div style={{ marginTop: "1rem", display: "flex", justifyContent: "flex-end" }}>
+        <div className="submit-button">
           <Button variant="contained" onClick={handleSubmit}>
             Submit
           </Button>
@@ -112,4 +111,4 @@ const Questionnaire = () => {
   );
 };
 
-export default Questionnaire;
+export default memo(Questionnaire);

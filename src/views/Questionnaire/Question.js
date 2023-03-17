@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Radio from "../../components/Radio";
 import Select from "../../components/Select";
 import TextArea from "../../components/TextArea";
@@ -18,7 +19,6 @@ const Question = ({
   placeholder,
   title,
   options,
-  questionsData,
   name,
   errors,
   handleOnChange,
@@ -58,7 +58,7 @@ const Question = ({
         id={id}
         title={title}
         options={options}
-        value={questionsData?.data?.[id]}
+        value={value}
         name={name}
         onChange={handleChange}
       />
@@ -111,7 +111,7 @@ const Question = ({
         title={title}
         options={options}
         width={width}
-        value={questionsData?.data?.[id]}
+        value={value}
         error={errors?.length>0}
         helperText={errors?.[0]}
         onChange={handleChange}
@@ -136,4 +136,4 @@ const Question = ({
   }
 };
 
-export default Question;
+export default memo(Question);
