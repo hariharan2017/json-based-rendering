@@ -1,13 +1,34 @@
-import { memo } from "react";
+import { memo, SyntheticEvent } from "react";
 import Radio from "../../components/Radio";
 import Select from "../../components/Select";
 import TextArea from "../../components/TextArea";
 import TextField from "../../components/TextField";
 import MaterialRadio from "../../components/MaterialRadio";
 import MaterialSelect from "../../components/MaterialSelect";
-import { default as MaterialTextField } from '@mui/material/TextField';
+import { default as MaterialTextField } from "@mui/material/TextField";
 import { setMaterialWidth } from "../../helpers/utils";
 import { MATERIAL_MARGIN } from "../../constants/cssConstants";
+import { SelectChangeEvent } from '@mui/material/Select';
+
+interface Option {
+  id: string;
+  label: string | number;
+}
+
+interface QuestionProps {
+  element: string;
+  id: string;
+  type: string;
+  label: string;
+  width: string;
+  value: string;
+  placeholder: string;
+  title: string;
+  name: string;
+  errors: string[];
+  options: Option[];
+  handleOnChange: (element: string, event: SyntheticEvent<Element, Event> | SelectChangeEvent<string>, id: string) => void;
+}
 
 const Question = ({
   element,
@@ -21,11 +42,11 @@ const Question = ({
   options,
   name,
   errors,
-  handleOnChange,
-}) => {
-  const handleChange = (event) => {
-    handleOnChange(element, event, id)
-  }
+  handleOnChange
+}: QuestionProps) => {
+  const handleChange = (event: SyntheticEvent<Element, Event> | SelectChangeEvent<string>): void => {
+    handleOnChange(element, event, id);
+  };
 
   if (element === "input") {
     return (
@@ -39,6 +60,8 @@ const Question = ({
         placeholder={placeholder}
         errors={errors}
         onChange={handleChange}
+        required={false}
+        disabled={false}
       />
     );
   } else if (element === "textArea") {
@@ -50,6 +73,9 @@ const Question = ({
         value={value}
         placeholder={placeholder}
         onChange={handleChange}
+        required={false}
+        height={""}
+        width={""}
       />
     );
   } else if (element === "radio") {
@@ -61,6 +87,7 @@ const Question = ({
         value={value}
         name={name}
         onChange={handleChange}
+        width={""}
       />
     );
   } else if (element === "select") {
@@ -70,6 +97,7 @@ const Question = ({
         title={title}
         options={options}
         onChange={handleChange}
+        width={""}
       />
     );
   } else if (element === "material-input") {
@@ -82,7 +110,7 @@ const Question = ({
         label={label}
         value={value}
         placeholder={placeholder}
-        error={errors?.length>0}
+        error={errors?.length > 0}
         helperText={errors?.[0]}
         onChange={handleChange}
       />
@@ -99,11 +127,11 @@ const Question = ({
         placeholder={placeholder}
         multiline
         rows={4}
-        error={errors?.length>0}
+        error={errors?.length > 0}
         helperText={errors?.[0]}
         onChange={handleChange}
       />
-    )
+    );
   } else if (element === "material-radio") {
     return (
       <MaterialRadio
@@ -112,9 +140,10 @@ const Question = ({
         options={options}
         width={width}
         value={value}
-        error={errors?.length>0}
+        error={errors?.length > 0}
         helperText={errors?.[0]}
         onChange={handleChange}
+        name={name}
       />
     );
   } else if (element === "material-select") {
@@ -124,15 +153,14 @@ const Question = ({
         title={title}
         options={options}
         width={width}
-        error={errors?.length>0}
+        error={errors?.length > 0}
         helperText={errors?.[0]}
         onChange={handleChange}
+        value={value}
       />
     );
   } else if (element === "spacer") {
-    return (
-      <div style={{ width }}/>
-    )
+    return <div style={{ width }} />;
   }
 };
 

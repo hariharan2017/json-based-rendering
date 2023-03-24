@@ -1,6 +1,6 @@
 import * as actionTypes from "./types";
 
-const testReducer = (state, action) => {
+const testReducer = (state: Object, action: {type: string}) => {
   state = state || { data: {} };
 
   switch (action.type) {

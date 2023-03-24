@@ -1,11 +1,14 @@
-import { put, takeLatest } from "redux-saga/effects";
-import * as action from "./actions";
+import { takeLatest } from "redux-saga/effects";
 import { FETCH_API_DATA } from "./types";
 import axios from "axios";
 
+interface ResponseObject {
+  data: Object[]
+}
+
 export function* getData() {
   try {
-    const result = yield axios.get("https://swapi.dev/api/people");
+    const result: ResponseObject = yield axios.get("https://swapi.dev/api/people");
     console.log(result.data);
   } catch (err) {
     console.log(err);

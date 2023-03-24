@@ -8,10 +8,10 @@ import profileData from "../../../data/profile.json";
 import "./Topbar.scss";
 
 function Topbar() {
-  const [open, setOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState<boolean>(false);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
-  const enablePopper = (event) => {
+  const enablePopper = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
     setOpen(anchorEl ? false : true);
   };

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { actions } from "../../store/question";
 import { toast } from 'react-toastify';
 import JSONInput from "react-json-editor-ajrm";
@@ -9,15 +9,15 @@ import initialData from "../../data/questions.json";
 const JsonEditor = () => {
 
   const dispatch = useDispatch();
-  const questionsData = useSelector((state) => state.questionData);
+  const questionsData = useSelector((state: RootStateOrAny) => state.questionData);
 
   useEffect(() => {
-    if (Object.keys(questionsData.questionsList) == 0) {
+    if (Object.keys(questionsData.questionsList).length == 0) {
       dispatch(actions.setInitialState(initialData));
     }
   }, []);
 
-  const handleChange = (event) => {
+  const handleChange = (event: any) => {
     if (!event.error) {
       dispatch(actions.setInitialState(event.jsObject));
       toast("Updated JSON questionnaire", {

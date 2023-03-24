@@ -1,6 +1,22 @@
+import { SyntheticEvent } from "react";
 import "./Radio.scss";
 
-function Radio({ id, title, options, name, value, onChange, width = "100%" }) {
+interface Option {
+  id: string,
+  label: string | number
+}
+
+interface Props {
+  id: string,
+  name: string,
+  value: string,
+  title: string,
+  options: Option[],
+  width: string,
+  onChange: (event: SyntheticEvent) => void
+}
+
+function Radio({ id, title, options, name, value, onChange, width = "100%" }: Props) {
   return (
     <div key={id} className="radio-container" style={{ width }}>
       <label className="radio-title">{title}</label>

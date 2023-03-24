@@ -1,7 +1,20 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import "./TextField.scss";
 
-export default function TextField({ id, type, label, value, required, width, onChange, disabled, placeholder, errors }) {
+interface Props {
+  id: string,
+  type: string,
+  label: string,
+  value: string,
+  required: boolean,
+  width: string,
+  disabled: boolean,
+  placeholder: string,
+  errors: string[],
+  onChange: (event: SyntheticEvent<Element, Event>) => void
+}
+
+export default function TextField({ id, type, label, value, required = false, width, onChange, disabled = false, placeholder, errors }: Props) {
   return (
     <div className="input-container" key={id} style={{ width }}>
       {label && (

@@ -10,7 +10,7 @@ import JsonEditor from "./views/JsonEditor";
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const [tab, setTab] = useState(JSON_EDITOR);
+  const [tab, setTab] = useState<string>(JSON_EDITOR);
 
   return (
     <Provider store={store}>

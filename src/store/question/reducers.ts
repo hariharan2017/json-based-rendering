@@ -1,12 +1,19 @@
 import * as actionTypes from "./types";
 
-const toggleQuestionVisibility = (questionsList, id, state, changeTo) => {
-  questionsList[id].changes.ids.forEach((id) => {
+const toggleQuestionVisibility = (questionsList: any, id: number, state: any, changeTo: boolean) => {
+  questionsList[id].changes.ids.forEach((id: number) => {
     state.questionVisibility[id].shouldShow = changeTo;
   })
 }
 
-const questionDataReducer = (state, action) => {
+interface ActionProps {
+  type: string, 
+  response: any, 
+  err: string, 
+  data: Object
+}
+
+const questionDataReducer = (state: any, action: ActionProps) => {
   state = state || { data: {}, sections: [], questionsList: {}, questionVisibility: {}, errors: {}, original: null };
 
   switch (action.type) {

@@ -7,7 +7,24 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import { MATERIAL_MARGIN } from '../../constants/cssConstants';
 
-function MaterialRadio ({ id, title, name, options, value, onChange, error, helperText, width = "100%" }) {
+type Option = {
+  id: string,
+  label: string | number
+}
+
+type Props = {
+  id: string,
+  name: string,
+  value: string,
+  error: boolean,
+  helperText: string,
+  title: string,
+  options: Option[],
+  width: string,
+  onChange: ((event: React.ChangeEvent<HTMLInputElement>) => void) 
+}
+
+function MaterialRadio ({ id, title, name, options, value, onChange, error, helperText, width = "100%" }: Props) {
   return (
     <FormControl error={error} sx={{ width, margin: MATERIAL_MARGIN }}>
       <FormLabel id={id}>{title}</FormLabel>

@@ -17,7 +17,13 @@ const menuItems = [
   { label: QUESTIONNAIRE, icon: <HelpCenterIcon /> }
 ];
 
-export default function Sidebar({ children, tab, setTab }) {
+interface Props {
+  children: React.ReactNode,
+  tab: string,
+  setTab: React.Dispatch<React.SetStateAction<string>>
+}
+
+export default function Sidebar({ children, tab, setTab }: Props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <Drawer

@@ -1,5 +1,5 @@
-import { useEffect, useState, useCallback, memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState, useCallback, memo, ReactNode, SyntheticEvent } from "react";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { actions } from "../../store/question";
 import { toast } from 'react-toastify';
 import questions from "../../data/questions.json";
@@ -7,19 +7,26 @@ import Question from "./Question";
 import Button from '@mui/material/Button';
 import "./Questionnaire.scss";
 import { formValidator } from "../../helpers/formValidator";
+import { SelectChangeEvent } from '@mui/material/Select';
+
+interface Section {
+  sectionName: string,
+  sectionLabel: string,
+  questionOrder: number[]
+}
 
 const Questionnaire = () => {
   const [questionsList, setQuestionsList] = useState([]);
 
-  const questionsData = useSelector((state) => state.questionData);
+  const questionsData = useSelector((state: RootStateOrAny) => state.questionData);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const sections = {};
-    questionsData?.sections?.forEach((section) => {
-      const renderedQuestions = [];
-      section?.questionOrder?.forEach((key) => {
+    const sections: Object | any = {};
+    questionsData?.sections?.forEach((section: Section) => {
+      const renderedQuestions: ReactNode[] = [];
+      section?.questionOrder?.forEach((key: number) => {
         if(questionsData.questionVisibility?.[key]?.shouldShow) {
           renderedQuestions.push(
           <Question
@@ -40,15 +47,15 @@ const Questionnaire = () => {
         );
         }
       })
-      sections[section?.sectionName] = renderedQuestions;
+      sections[section.sectionName] = renderedQuestions;
     });
     
     setQuestionsList(sections);
   }, [JSON.stringify(questionsData)]);
 
-  const handleOnChange = useCallback((type, event, questionId) => {
-    const id = event.target.id;
-    const value = event.target.value;
+  const handleOnChange = useCallback((type: string, event: SyntheticEvent<Element, Event> | SelectChangeEvent<string>, questionId: string) => {
+    const id = (event.target as HTMLInputElement).id;
+    const value = (event.target as HTMLInputElement).value;
     if(type === "input" || type === "material-input") {
       dispatch(actions.changeData({ id, value}));
     } else if(type === "textArea" || type === "material-textArea") {
@@ -89,12 +96,12 @@ const Questionnaire = () => {
       <div className="main-heading">{questions.title}</div>
       {/* <button onClick={() => dispatch(actions.fetchData())}>Test Saga</button> */}
       <div className="questions-container">
-        {questionsData?.sections?.map((section) => {
+        {questionsData?.sections?.map((section: Section) => {
           return (
             <div key={section?.sectionLabel} >
               <div className="section-header">{section?.sectionLabel}</div>
               <div style={{ display: "flex", flexWrap: "wrap" }}>
-              {questionsList?.[section?.sectionName]?.map((question) => {
+              {questionsList?.[section?.sectionName]?.map((question: any) => {
                 return question;
               })}
               </div>
