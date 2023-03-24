@@ -1,2 +1,2 @@
 * linguist-vendored
-*.tsx .ts .html .scss linguist-vendored=false
+*.tsx *.ts *.html *.scss linguist-vendored=false
